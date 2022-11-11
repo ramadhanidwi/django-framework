@@ -1,0 +1,10 @@
+body{
+    background-color: #FFFF;
+}
+
+.jumbotron{
+    background-image: url('../images/perumahan.jpg') ;
+    background-position: center;
+    background-size: cover;
+    
+}

@@ -1,0 +1,14 @@
+<div class="jumbotron text-center text-white shadow-lg">
+    <h1>Database Warga</h1>
+    {% if user.is_authenticated %}
+      <p>Selamat Datang, <strong>{{ user }}</strong>!</p>
+    
+      <nav class="nav justify-content-center">
+        <a href="{% url 'home' %}" class="nav-link text-white">Home</a>
+        <a href="{% url 'data_rakyat' %}" class="nav-link text-white">Data Warga</a>
+        <a href="{% url 'tambah_warga' %}" class="nav-link text-white">Tambah Data</a>
+        <a href="{% url 'signup' %}" class="nav-link text-white">Daftar</a>
+        <a href="{% url 'keluar' %}" class="nav-link text-danger">Keluar</a>
+      </nav>
+    {% endif %}
+</div>

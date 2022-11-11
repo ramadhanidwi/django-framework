@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+                <h3>
+                    <a href="{% url 'export_excel' %}" class="btn btn-success text-right">Export Ke Excel</a>
+                </h3>
+                <div class="mt-3 mb-3">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="search" name="pencarian" placeholder="Masukan Nama Yang Akan Dicari" class="form-control">
+                    </form>
+                    </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>NIK</th>
+                        <th>Tempat Tanggal Lahir</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Alamat</th>
+                        <th>RT</th>
+                        <th>Agama</th>
+                        <th>Pekerjaan</th>
+                        <th>Status Bantuan</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for warga in data %}
+                    <tr>
+                        <td><a href="{% url 'ubah' warga.id %}">{{ warga.nama }}</a></td>
+                        <td>{{ warga.nik }}</td>
+                        <td>{{ warga.tempat_tanggal_lahir }}</td>
+                        <td>{{ warga.jenis_kelamin }}</td>
+                        <td>{{ warga.alamat }}</td>
+                        <td>{{ warga.rt }}</td>
+                        <td>{{ warga.agama }}</td>
+                        <td>{{ warga.pekerjaan }}</td>
+                        <td>{{ warga.status_bantuan }}</td>
+                        <td>
+                            <a data-toggle="modal" data-target="#hapus-{{ warga.id }}" class="btn btn-danger">Hapus</a>
+                        </td>
+                        <div class="modal" id = "hapus-{{ warga.id}}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="modal-title">
+                                            <h3>Hapus</h3>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah anda akan menghapus <strong>{{ warga.nama |upper }}</strong> dari database?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{% url 'hapus_data' warga.id %}" class="btn btn-danger">Hapus</a>
+                                        <button class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
